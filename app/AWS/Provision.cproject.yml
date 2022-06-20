@@ -1,0 +1,111 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/0.9.4/tools/projmgr/schemas/cproject.schema.json
+
+project:
+  # packs:
+  #   - pack: ARM::CMSIS
+  #   - pack: ARM::CMSIS-FreeRTOS@10.4.6
+  #   - pack: ARM::mbedTLS@1.7.0
+
+  compiler: AC6
+  misc:
+    - C:
+      - -std=gnu11
+
+  add-paths:
+    - ./amazon-freertos/libraries/3rdparty/mbedtls_config
+    - ./amazon-freertos/libraries/abstractions/platform/include
+    - ./amazon-freertos/libraries/abstractions/platform/freertos/include
+    - ./amazon-freertos/libraries/c_sdk/standard/common/include
+    - ./amazon-freertos/libraries/logging/include
+    - ./provision
+    - ./provision/config
+    - ./provision/crypto
+    - ./provision/kvstore
+    - ./provision/sys
+    - ../../tfm/interface/include
+
+  components:
+    - component: ARM::CMSIS:RTOS2:FreeRTOS&Cortex-M
+
+    - component: ARM::RTOS&FreeRTOS:Config&CMSIS RTOS2
+    - component: ARM::RTOS&FreeRTOS:Core&Cortex-M
+    - component: ARM::RTOS&FreeRTOS:Event Groups
+    - component: ARM::RTOS&FreeRTOS:Heap&Heap_5
+    - component: ARM::RTOS&FreeRTOS:Stream Buffer
+    - component: ARM::RTOS&FreeRTOS:Timers
+
+    - component: ARM::Security:mbed TLS
+      defines:
+        - MBEDTLS_CONFIG_FILE="mbedtls_config_psa.h"
+
+  groups:
+    # - group: Documentation
+    #   files: 
+    #     - file: ./README.md
+    - group: main
+      files:
+        - file: ./provision/app/app_main.c
+        - file: ./tfm_ns_interface_freertos.c
+    - group: config
+      files:
+        - file: ./provision/config/iot_config.h
+        - file: ./provision/config/kvstore_config.h
+        - file: ./provision/config/kvstore_config_plat.h
+        - file: ./provision/config/mbedtls_config_psa.h
+        - file: ./provision/config/tls_transport_config.h
+    - group: cli
+      defines:
+        - MBEDTLS_CONFIG_FILE="mbedtls_config_psa.h"
+      files:
+        - file: ./provision/cli/cli_main.c
+        - file: ./provision/cli/cli_conf.c
+        - file: ./provision/cli/cli_pki.c
+        - file: ./provision/cli/cli_io_drv.c
+    - group: crypto
+      defines:
+        - MBEDTLS_CONFIG_FILE="mbedtls_config_psa.h"
+      files:
+        - file: ./provision/crypto/PkiObject.c
+        - file: ./provision/crypto/PkiObjectPkcs11.c
+        - file: ./provision/crypto/PkiObjectPsa.c
+        - file: ./provision/crypto/mbedtls_pk_pkcs11.c
+        - file: ./provision/crypto/mbedtls_pk_psa.c
+        - file: ./provision/crypto/mbedtls_entropy_alt_psa.c
+        - file: ./provision/crypto/psa_util.c
+    - group: kvstore
+      files:
+        - file: ./provision/kvstore/kvstore.c
+        - file: ./provision/kvstore/kvstore_cache.c
+        - file: ./provision/kvstore/kvstore_nv_littlefs.c
+        - file: ./provision/kvstore/kvstore_nv_psa_its.c
+    - group: sys
+      defines:
+        - MBEDTLS_CONFIG_FILE="mbedtls_config_psa.h"
+      files:
+        - file: ./provision/sys/mbedtls_freertos_port.c
+    - group: libc
+      files:
+        - file: ./provision/libc/stpncpy.c
+        - file: ./provision/libc/strnlen.c
+        - file: ./provision/libc/strnstr.c
+    - group: libraries
+      files:
+        - file: ./amazon-freertos/libraries/abstractions/platform/freertos/iot_threads_freertos.c
+        - file: ./amazon-freertos/libraries/abstractions/platform/freertos/iot_clock_freertos.c
+        - file: ./amazon-freertos/libraries/logging/iot_logging.c
+        - file: ./amazon-freertos/libraries/logging/iot_logging_task_dynamic_buffers.c
+    - group: tfm
+      files:
+        - file: ../../tfm/interface/src/tfm_crypto_ipc_api.c
+        - file: ../../tfm/interface/src/tfm_firmware_update_ipc_api.c
+        - file: ../../tfm/interface/src/tfm_initial_attestation_ipc_api.c
+        - file: ../../tfm/interface/src/tfm_its_ipc_api.c
+        - file: ../../tfm/interface/src/tfm_platform_ipc_api.c
+        - file: ../../tfm/interface/src/tfm_ps_ipc_api.c
+        - file: ../../tfm/interface/src/tfm_psa_ns_api.c
+        - file: ../../tfm/interface/lib/s_veneers.o
+
+  layers:
+    - layer: ./Board/B-U585I-IOT02A/Board.clayer.yml
+      for-type: 
+        - +B-U585I-IOT02A
