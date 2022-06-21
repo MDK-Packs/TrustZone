@@ -58,15 +58,13 @@ enum
     BACKSPACE = 0x08,
     LF        = 0x0A,
     CR        = 0x0D,
-    CNTLQ     = 0x11,
-    CNTLS     = 0x13,
-    ESC       = 0x1B,
     DEL       = 0x7F 
 };
 
 static int32_t io_readline( char ** const ppcInputBuffer )
 {
-    int32_t cnt = 0;
+    uint32_t eol = 0;
+    uint32_t cnt = 0;
     char * line = pcInputBuffer;
     char c;
 
@@ -80,14 +78,11 @@ static int32_t io_readline( char ** const ppcInputBuffer )
             case CNTLC:                     /* Control C                      */
                 printf ( CLI_OUTPUT_EOL CLI_PROMPT_STR );
                 break;
-            case CNTLQ:                     /* ignore Control S/Q             */
-            case CNTLS:
-                break;
             case BACKSPACE:
             case DEL:
                 if( cnt == 0 )
                 {
-                    break;
+                    break;                  /* ignore if at the begining      */
                 }
                 cnt--;                      /* decrement count                */
                 line--;                     /* and line pointer               */
@@ -96,10 +91,14 @@ static int32_t io_readline( char ** const ppcInputBuffer )
                 putchar( BACKSPACE );
                 fflush ( stdout );
                 break;
+            case LF:                        /* LF - done, stop editing line   */
             case CR:                        /* CR - done, stop editing line   */
-                putchar( c );               /* echo character                 */
-                putchar( LF );
-                fflush( stdout );
+                if( cnt == 0 )
+                {
+                    break;                  /* ignore if at the begining      */
+                }
+                printf ( CLI_OUTPUT_EOL );  /* echo \r\n                      */
+                eol = 1;
                 break;
             default:
                 putchar( *line = c );       /* echo and store character       */
@@ -108,7 +107,7 @@ static int32_t io_readline( char ** const ppcInputBuffer )
                 cnt++;                      /* and count                      */
                 break;
         }
-    } while( ( cnt < ( CLI_INPUT_LINE_LEN_MAX - 1 ) )  && ( c != CR ) );
+    } while( ( cnt < ( CLI_INPUT_LINE_LEN_MAX - 1 ) )  && ( eol == 0 ) );
 
     *line = 0;                              /* mark end of string             */
 
