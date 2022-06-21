@@ -33,13 +33,14 @@ Board: B-U585I-IOT02A
 1. Use `csolution` to create `.cprj` project files  
 `csolution convert -s AWS.csolution.yml -c Provision.Debug+B-U585I-IOT02A`  
 `csolution convert -s AWS.csolution.yml -c Provision.Release+B-U585I-IOT02A`
+> Note: remove `-std=c99` within `cflags` in generated `.cprj` in order to suppress warnings
 
 2. Build a specific project
   - use `cbuild`  
   `cbuild Provision.Debug+B-U585I-IOT02A.cprj`  
   `cbuild Provision.Release+B-U585I-IOT02A.cprj`  
   - or use MDK and import `Provision.<build-type>+B-U585I-IOT02A.cprj` and build with MDK  
-  Note: due to current importer limitation it is necessary to manually add the following preprocessor define 
+  > Note: due to current importer limitation it is necessary to manually add the following preprocessor define 
   `MBEDTLS_CONFIG_FILE=\"mbedtls_config_psa.h\"`
 
 3. Sign the image (`<version> = "0.0.0"`, `<security_counter> = 1`)
@@ -89,7 +90,7 @@ Connectivity: WiFi interface with WiFi module
   `cbuild MQTT_MutualAuth_Demo.Debug+B-U585I-IOT02A.cprj`  
   `cbuild MQTT_MutualAuth_Demo.Release+B-U585I-IOT02A.cprj`  
   - or use MDK and import `MQTT_MutualAuth_Demo.<build-type>+B-U585I-IOT02A.cprj` and build with MDK  
-  Note: due to current importer limitation it is necessary to manually add the following preprocessor define 
+  > Note: due to current importer limitation it is necessary to manually add the following preprocessor define 
   `MBEDTLS_CONFIG_FILE=\"aws_mbedtls_config.h\"`
 
 3. Sign the image (`<version> = "0.9.2"`, `<security_counter> = 1`)
@@ -138,7 +139,7 @@ Connectivity: WiFi interface with WiFi module
   `cbuild OTA_MQTT_Update_Demo.Debug+B-U585I-IOT02A.cprj`  
   `cbuild OTA_MQTT_Update_Demo.Release+B-U585I-IOT02A.cprj`  
   - or use MDK and import `OTA_MQTT_Update_Demo.<build-type>+B-U585I-IOT02A.cprj` and build with MDK  
-  Note: due to current importer limitation it is necessary to manually add the following preprocessor define 
+  > Note: due to current importer limitation it is necessary to manually add the following preprocessor define 
   `MBEDTLS_CONFIG_FILE=\"aws_mbedtls_config.h\"`
 
 3. Sign the image (`<version> = "0.9.2"`, `<security_counter> = 1`)
