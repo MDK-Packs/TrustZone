@@ -17,7 +17,6 @@ project:
   add-paths:
     - ./config_files
     - ./amazon-freertos/demos/include
-    - ./amazon-freertos/demos/dev_mode_key_provisioning/include
     - ./amazon-freertos/demos/network_manager
     - ./amazon-freertos/demos/common/pkcs11_helpers
     - ./amazon-freertos/demos/common/mqtt_subscription_manager
@@ -42,7 +41,6 @@ project:
 
   defines:
     - CONFIG_OTA_MQTT_UPDATE_DEMO_ENABLED
-    - CONFIG_OTA_PROVISION
 
   components:
     - component: ARM::CMSIS:RTOS2:FreeRTOS&Cortex-M
@@ -75,12 +73,9 @@ project:
       files: 
         - file: ./README.md
     - group: main
-      defines:
-        - MBEDTLS_CONFIG_FILE="aws_mbedtls_config.h"
       files:
         - file: ./app_main.c
         - file: ./tfm_ns_interface_freertos.c
-        - file: ./ota_provision.c
     - group: config_files
       files:
         - file: ./config_files/aws_demo_config.h
@@ -92,15 +87,11 @@ project:
         - file: ./config_files/iot_secure_sockets_config.h
         - file: ./config_files/ota_config.h
         - file: ./config_files/ota_demo_config.h
-        - file: ./config_files/tls_transport_config.h
     - group: demos
-      defines:
-        - MBEDTLS_CONFIG_FILE="aws_mbedtls_config.h"
       files:
         - file: ./amazon-freertos/demos/demo_runner/aws_demo.c
         - file: ./amazon-freertos/demos/demo_runner/iot_demo_runner.c
         - file: ./amazon-freertos/demos/demo_runner/iot_demo_freertos.c
-        - file: ./amazon-freertos/demos/dev_mode_key_provisioning/src/aws_dev_mode_key_provisioning.c
         - file: ./amazon-freertos/demos/network_manager/aws_iot_network_manager.c
         - file: ./amazon-freertos/demos/ota/ota_demo_core_mqtt/ota_demo_core_mqtt.c
         - file: ./amazon-freertos/demos/common/ota_demo_helpers/ota_application_version.c 

@@ -34,8 +34,6 @@
 
 #include "ota_config.h"
 
-#include "tls_transport_config.h"
-
 /* OTA PAL Port include. */
 #include "ota_pal.h"
 
@@ -50,6 +48,10 @@
  * Macros
  *
  **********************************************************************/
+
+#ifndef OTA_SIGNING_KEY_ID
+#define OTA_SIGNING_KEY_ID      0x00000011UL
+#endif
 
 #define ECDSA_SHA256_RAW_SIGNATURE_LENGTH     ( 64 )
 

@@ -132,28 +132,28 @@
  * Private key for connection to AWS IoT endpoint.  The corresponding
  * public key should be registered with the AWS IoT endpoint.
  */
-#define pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS       "Device Priv TLS Key"
+#define pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS       "tls_key_priv"
 
 /**
  * @brief The PKCS #11 label for device public key.
  *
  * The public key corresponding to pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS.
  */
-#define pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS        "Device Pub TLS Key"
+#define pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS        "tls_key_pub"
 
 /**
  * @brief The PKCS #11 label for the device certificate.
  *
  * Device certificate corresponding to pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS.
  */
-#define pkcs11configLABEL_DEVICE_CERTIFICATE_FOR_TLS       "Device Cert"
+#define pkcs11configLABEL_DEVICE_CERTIFICATE_FOR_TLS       "tls_cer"
 
 /**
  * @brief The PKCS #11 label for the object to be used for code verification.
  *
  * Used by over-the-air update code to verify an incoming signed image.
  */
-#define pkcs11configLABEL_CODE_VERIFICATION_KEY            "Code Verify Key"
+#define pkcs11configLABEL_CODE_VERIFICATION_KEY            "ota_signer_pub"
 
 /**
  * @brief The PKCS #11 label for Just-In-Time-Provisioning.
@@ -169,7 +169,7 @@
  *
  * @see aws_default_root_certificates.h
  */
-#define pkcs11configLABEL_ROOT_CERTIFICATE                 "Root Cert"
+#define pkcs11configLABEL_ROOT_CERTIFICATE                 "root_ca_cert"
 
 #define pkcs11configPAL_DESTROY_SUPPORTED 1
 

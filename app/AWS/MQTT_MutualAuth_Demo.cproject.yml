@@ -14,7 +14,6 @@ project:
   add-paths:
     - ./config_files
     - ./amazon-freertos/demos/include
-    - ./amazon-freertos/demos/dev_mode_key_provisioning/include
     - ./amazon-freertos/demos/network_manager
     - ./amazon-freertos/demos/common/pkcs11_helpers
     - ./amazon-freertos/libraries/3rdparty/mbedtls_config
@@ -75,14 +74,11 @@ project:
         - file: ./config_files/iot_secure_sockets_config.h
         - file: ./config_files/mqtt_demo_mutual_auth_config.h
     - group: demos
-      defines:
-        - MBEDTLS_CONFIG_FILE="aws_mbedtls_config.h"
       files:
         - file: ./amazon-freertos/demos/demo_runner/aws_demo.c
         - file: ./amazon-freertos/demos/demo_runner/iot_demo_runner.c
         - file: ./amazon-freertos/demos/demo_runner/iot_demo_freertos.c
         - file: ./amazon-freertos/demos/coreMQTT/mqtt_demo_mutual_auth.c
-        - file: ./amazon-freertos/demos/dev_mode_key_provisioning/src/aws_dev_mode_key_provisioning.c
         - file: ./amazon-freertos/demos/network_manager/aws_iot_network_manager.c
         - file: ./amazon-freertos/demos/common/pkcs11_helpers/pkcs11_helpers.c
     - group: libraries
