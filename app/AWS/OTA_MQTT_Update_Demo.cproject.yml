@@ -37,6 +37,10 @@ project:
     - ./amazon-freertos/libraries/c_sdk/standard/common/include/private
     - ./amazon-freertos/libraries/freertos_plus/standard/crypto/include
     - ./amazon-freertos/libraries/freertos_plus/standard/tls/include
+    - ./provision/config
+    - ./provision/cli
+    - ./provision/crypto
+    - ./provision/kvstore
     - ../../tfm/interface/include
 
   defines:
@@ -123,6 +127,47 @@ project:
         - file: ./amazon-freertos/libraries/freertos_plus/standard/tls/src/iot_tls.c
         - file: ./amazon-freertos/libraries/logging/iot_logging.c
         - file: ./amazon-freertos/libraries/logging/iot_logging_task_dynamic_buffers.c
+    - group: provision
+      # add-paths:
+      #   - ./provision/config
+      #   - ./provision/crypto
+      #   - ./provision/kvstore
+      groups:
+        - group: config
+          files:
+            - file: ./provision/config/kvstore_config.h
+            - file: ./provision/config/kvstore_config_plat.h
+            - file: ./provision/config/tls_transport_config.h
+        - group: cli
+          defines:
+            - MBEDTLS_CONFIG_FILE="aws_mbedtls_config.h"
+          files:
+            - file: ./provision/cli/cli_main.c
+            - file: ./provision/cli/cli_conf.c
+            - file: ./provision/cli/cli_pki.c
+            - file: ./provision/cli/cli_io_drv.c
+        - group: crypto
+          defines:
+             - MBEDTLS_CONFIG_FILE="aws_mbedtls_config.h"
+          files:
+            - file: ./provision/crypto/PkiObject.c
+            - file: ./provision/crypto/PkiObjectPkcs11.c
+            - file: ./provision/crypto/PkiObjectPsa.c
+            - file: ./provision/crypto/psa_util.c
+            - file: ./provision/crypto/mbedtls_pk_pkcs11.c
+            - file: ./provision/crypto/mbedtls_pk_psa.c
+            - file: ./provision/crypto/mbedtls_entropy_alt_psa.c
+        - group: kvstore
+          files:
+            - file: ./provision/kvstore/kvstore.c
+            - file: ./provision/kvstore/kvstore_cache.c
+            - file: ./provision/kvstore/kvstore_nv_littlefs.c
+            - file: ./provision/kvstore/kvstore_nv_psa_its.c
+        - group: libc
+          files:
+            - file: ./provision/libc/stpncpy.c
+            - file: ./provision/libc/strnlen.c
+            - file: ./provision/libc/strnstr.c
     - group: tfm
       files:
         - file: ../../tfm/interface/src/tfm_crypto_ipc_api.c

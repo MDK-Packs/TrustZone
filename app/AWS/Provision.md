@@ -55,7 +55,7 @@ After provisioning is done the device can connect to the Amazon AWS Cloud.
 
 ## Provision the target
 
-To provision the target run the Provision application in the target and start the **provision.py** script by executing the following command:
+To provision the target run the provisioning application in the target and start the **provision.py** script by executing the following command:
 ```
 provision.py --interactive
 ```

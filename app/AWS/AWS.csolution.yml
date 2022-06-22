@@ -40,7 +40,7 @@ solution:
           - -Wno-pragma-pack
           - -Wno-parentheses-equality
         - C:
-          - -std=c99
+          - -std=gnu11
         - ASM:
           - -masm=auto
         - Link:
@@ -54,13 +54,12 @@ solution:
           - -Wno-pragma-pack
           - -Wno-parentheses-equality
         - C:
-          - -std=c99
+          - -std=gnu11
         - ASM:
           - -masm=auto
         - Link:
           - --entry=Reset_Handler
 
   projects:
-    - project: ./Provision.cproject.yml
     - project: ./MQTT_MutualAuth_Demo.cproject.yml
     - project: ./OTA_MQTT_Update_Demo.cproject.yml

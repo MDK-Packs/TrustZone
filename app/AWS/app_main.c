@@ -19,10 +19,13 @@
 #include <stdio.h>
 #include "main.h"
 #include "cmsis_os2.h"
+#include "cmsis_vio.h"
 #include "FreeRTOS.h"
+#include "iot_crypto.h"
 #include "iot_logging_task.h"
 #include "aws_demo.h"
-
+#include "kvstore.h"
+#include "cli.h"
 
 /* Set logging task as high priority task */
 #define LOGGING_TASK_PRIORITY                         (tskIDLE_PRIORITY)
@@ -59,18 +62,23 @@ static void app_main (void *argument) {
 
   (void)argument;
 
-  ns_interface_lock_init();
+  if (vioGetSignal(vioBUTTON0)) {
+    printf( "Command Line Interface (CLI) to provision the device.\r\n" );
+    CRYPTO_Init();
+    xTaskCreate( Task_CLI, "cli", 2048, NULL, 1, NULL );
+    osDelay(osWaitForever);
+    for (;;) {}
+  }
 
   status = network_startup();
 
   if (status == 0) {
     /* Start demos. */
     DEMO_RUNNER_RunDemos();
-
-    // Add user code here:
-    osDelay(osWaitForever);
-    for (;;) {}
   }
+
+  osDelay(osWaitForever);
+  for (;;) {}
 }
 
 /*---------------------------------------------------------------------------
@@ -86,6 +94,10 @@ void app_initialize (void) {
   xLoggingTaskInitialize (LOGGING_TASK_STACK_SIZE,
                           LOGGING_TASK_PRIORITY,
                           LOGGING_MESSAGE_QUEUE_LENGTH);
+
+  ns_interface_lock_init();
+
+  KVStore_init();
 
   osThreadNew(app_main, NULL, &app_main_attr);
 }

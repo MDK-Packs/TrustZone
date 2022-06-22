@@ -15,46 +15,21 @@ CMSIS packs: required packs are listed in the [AWS.csolution.yml](AWS.csolution.
 ## Target Setup
 
  - target needs to be preloaded with prebuilt TF-M. See [README.md](../../tfm/README.md) for more details.
- - target needs to be preloaded with [Provision application](#provision-application).
+ - target needs to be loaded with [Provisioning application](#provisioning-application).
  - target needs to be provisioned. See [Provisioning the target](Provision.md).
 
-## Provision Application
+## Provisioning Application
 
-This application exposes a provisioning API accessible through the terminal which can be used to provision the target.  
+This application is integrated into the demos. It is activated during reset while holding vioBUTTON0 button pressed.  
+It exposes a provisioning API accessible through the terminal which can be used to provision the target.  
+
+Provision the target:
+ - program the demo with integrated provisioning application into the target
+ - reset the target while holding vioBUTTON0 button pressed
+ - execute the `provision.py --interactive` script on the PC
+ - reset the target to run the demo
+
 See [Provisioning the target](Provision.md) for details.
-
-Application is available for the following targets:
- - `B-U585I-IOT02A`: runs on B-U585I-IOT02A board
-
-### Target: `B-U585I-IOT02A`
-
-Board: B-U585I-IOT02A
-
-1. Use `csolution` to create `.cprj` project files  
-`csolution convert -s AWS.csolution.yml -c Provision.Debug+B-U585I-IOT02A`  
-`csolution convert -s AWS.csolution.yml -c Provision.Release+B-U585I-IOT02A`
-> Note: remove `-std=c99` within `cflags` in generated `.cprj` in order to suppress warnings
-
-2. Build a specific project
-  - use `cbuild`  
-  `cbuild Provision.Debug+B-U585I-IOT02A.cprj`  
-  `cbuild Provision.Release+B-U585I-IOT02A.cprj`  
-  - or use MDK and import `Provision.<build-type>+B-U585I-IOT02A.cprj` and build with MDK  
-  > Note: due to current importer limitation it is necessary to manually add the following preprocessor define 
-  `MBEDTLS_CONFIG_FILE=\"mbedtls_config_psa.h\"`
-
-3. Sign the image (`<version> = "0.0.0"`, `<security_counter> = 1`)
-  - run `sign_image.bat <name>.hex <version> <security_counter>`
-  - or use MDK:
-    - Options for Target - Output - enable "Create HEX File"
-    - Options for Target - User - After Build/Rebuild - enable Run #1 `sign_image.bat $L@L.hex <version> <security_counter>`
-    - Options for Target - Utilities - disable "Update Target before Debugging"
-
-4. Run the application
-  - connect the board ST-Link USB to a PC (provides also power)
-  - open terminal on PC and connect to board's serial port (Baud rate: 115200)
-  - program the signed image to the target using STM32CubeProgrammer
-  - reset the target and execute the `provision.py` script
 
 ## coreMQTT Mutual Authentication Demo
 
