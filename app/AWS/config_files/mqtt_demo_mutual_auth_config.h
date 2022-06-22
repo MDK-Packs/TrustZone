@@ -68,6 +68,7 @@
  *
  * #define democonfigCLIENT_IDENTIFIER    "insert here."
  */
+#define democonfigCLIENT_IDENTIFIER     "thing"
 
 /**
  * @brief Endpoint of the MQTT broker to connect to.

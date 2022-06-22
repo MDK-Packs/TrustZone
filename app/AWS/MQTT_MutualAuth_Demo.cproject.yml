@@ -79,6 +79,7 @@ project:
         - file: ./config_files/mqtt_demo_mutual_auth_config.h
     - group: demos
       files:
+        - file: ./amazon-freertos/demos/common/aws_clientcredential.c
         - file: ./amazon-freertos/demos/demo_runner/aws_demo.c
         - file: ./amazon-freertos/demos/demo_runner/iot_demo_runner.c
         - file: ./amazon-freertos/demos/demo_runner/iot_demo_freertos.c

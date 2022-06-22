@@ -26,12 +26,15 @@
 #ifndef __AWS_CLIENTCREDENTIAL__H__
 #define __AWS_CLIENTCREDENTIAL__H__
 
+#include <stdint.h>
+
 /*
  * @brief MQTT Broker endpoint.
  *
  * @todo Set this to the fully-qualified DNS name of your MQTT broker.
  */
-#define clientcredentialMQTT_BROKER_ENDPOINT         ""
+extern char pcMQTT_BROKER_ENDPOINT[256];
+#define clientcredentialMQTT_BROKER_ENDPOINT         pcMQTT_BROKER_ENDPOINT
 
 /*
  * @brief Host name.
@@ -43,12 +46,14 @@
  * by software, such as a production serial number, rather
  * than a hard coded constant.
  */
-#define clientcredentialIOT_THING_NAME               ""
+extern char pcIOT_THING_NAME[64];
+#define clientcredentialIOT_THING_NAME               pcIOT_THING_NAME
 
 /*
  * @brief Port number the MQTT broker is using.
  */
-#define clientcredentialMQTT_BROKER_PORT             8883
+extern uint16_t usMQTT_BROKER_PORT;
+#define clientcredentialMQTT_BROKER_PORT             usMQTT_BROKER_PORT
 
 /*
  * @brief Port number the Green Grass Discovery use for JSON retrieval from cloud is using.
@@ -60,13 +65,15 @@
  *
  * @todo If you are using Wi-Fi, set this to your network name.
  */
-#define clientcredentialWIFI_SSID                    ""
+extern char pcWIFI_SSID[32];
+#define clientcredentialWIFI_SSID                    pcWIFI_SSID
 
 /*
  * @brief Password needed to join Wi-Fi network.
  * @todo If you are using WPA, set this to your network password.
  */
-#define clientcredentialWIFI_PASSWORD                ""
+extern char pcWIFI_PASSWORD[64];
+#define clientcredentialWIFI_PASSWORD                pcWIFI_PASSWORD
 
 /*
  * @brief Wi-Fi network security type.

@@ -24,6 +24,7 @@
 #include "iot_crypto.h"
 #include "iot_logging_task.h"
 #include "aws_demo.h"
+#include "aws_clientcredential.h"
 #include "kvstore.h"
 #include "cli.h"
 
@@ -58,6 +59,7 @@ const HeapRegion_t xHeapRegions[] = {
  * Application main thread
  *---------------------------------------------------------------------------*/
 static void app_main (void *argument) {
+  uint32_t value;
   int32_t status;
 
   (void)argument;
@@ -69,6 +71,13 @@ static void app_main (void *argument) {
     osDelay(osWaitForever);
     for (;;) {}
   }
+
+  KVStore_getString(CS_CORE_THING_NAME, pcIOT_THING_NAME, sizeof(pcIOT_THING_NAME));
+  KVStore_getString(CS_CORE_MQTT_ENDPOINT, pcMQTT_BROKER_ENDPOINT, sizeof(pcMQTT_BROKER_ENDPOINT));
+  KVStore_getString(CS_WIFI_SSID, pcWIFI_SSID, sizeof(pcWIFI_SSID));
+  KVStore_getString(CS_WIFI_CREDENTIAL, pcWIFI_PASSWORD, sizeof(pcWIFI_PASSWORD));
+  value = KVStore_getUInt32(CS_CORE_MQTT_PORT, NULL);
+  usMQTT_BROKER_PORT = (uint16_t)value;
 
   status = network_startup();
 
