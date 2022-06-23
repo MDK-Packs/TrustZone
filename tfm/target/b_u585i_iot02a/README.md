@@ -19,7 +19,7 @@ Configuration and Build commands:
 
 `> mkdir build && cd build`
 
-`> cmake .. -DTFM_PLATFORM=stm/b_u585i_iot02a -DTFM_TOOLCHAIN_FILE=../toolchain_GNUARM.cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DTFM_DEV_MODE=1 -DTFM_ISOLATION_LEVEL=2`
+`> cmake .. -G"Unix Makefiles" -DTFM_PLATFORM=stm/b_u585i_iot02a -DTFM_TOOLCHAIN_FILE=../toolchain_GNUARM.cmake -DCMAKE_BUILD_TYPE=Debug -DTFM_DEV_MODE=1 -DTFM_ISOLATION_LEVEL=2`
 
 `> cmake --build ./  -- install`
 
@@ -51,10 +51,10 @@ Configuration and Build commands:
 
   - Use the **STM32CubeProgrammer**
   - Click on the **Download** icon (green down arrow) that opens **Erasing & Programming** tab
-  - Under **Download - File Path** select **b_u585i_iot02a_bl2.hex** file located in **bl2** directory
+  - Under **Download - File Path** select **bl2.hex** file located in **bl2/target/b_u585i_iot02a** directory
   - Click on the **Start Programm...** button
   - Wait for download and verify to finish
-  - Under **Download - File Path** select **b_u585i_iot02a_tfm_s_signed.hex** file
+  - Under **Download - File Path** select **tfm_s_signed.hex** file
   - Click on the **Start Programm...** button
   - Click on the **Disconnect** button
 
