@@ -178,7 +178,9 @@ project:
         - file: ../../tfm/interface/src/tfm_platform_ipc_api.c
         - file: ../../tfm/interface/src/tfm_ps_ipc_api.c
         - file: ../../tfm/interface/src/tfm_psa_ns_api.c
-        - file: ../../tfm/interface/lib/s_veneers.o
+        - file: ../../tfm/interface/target/b_u585i_iot02a/s_veneers.o
+          for-type: 
+            - +B-U585I-IOT02A
 
   layers:
     - layer: ./Board/B-U585I-IOT02A/Board.clayer.yml
