@@ -178,14 +178,28 @@ project:
         - file: ../../tfm/interface/src/tfm_platform_ipc_api.c
         - file: ../../tfm/interface/src/tfm_ps_ipc_api.c
         - file: ../../tfm/interface/src/tfm_psa_ns_api.c
+        - file: ../../tfm/interface/target/mps3_corstone-300_ethos-u55/s_veneers.o
+          for-type: 
+            - +AVH_MPS3_Corstone-300
         - file: ../../tfm/interface/target/b_u585i_iot02a/s_veneers.o
           for-type: 
             - +B-U585I-IOT02A
 
   layers:
+    - layer: ./Board/AVH_MPS3_Corstone-300/Board.clayer.yml
+      for-type: 
+        - +AVH_MPS3_Corstone-300
     - layer: ./Board/B-U585I-IOT02A/Board.clayer.yml
       for-type: 
         - +B-U585I-IOT02A
+
+    - layer: ./Socket/VSocket/Socket.clayer.yml
+      for-type: 
+        - +AVH_MPS3_Corstone-300
+
+    - layer: ./Interface/AWS/Socket/Interface.clayer.yml
+      for-type:
+        - +AVH_MPS3_Corstone-300
     - layer: ./Interface/AWS/WiFi/Interface.clayer.yml
       for-type:
         - +B-U585I-IOT02A
