@@ -28,7 +28,7 @@ The heap/stack setup and the CMSIS-Driver assignment is in configuration files o
 
 | System Component        | Setting
 |:------------------------|:----------------------------------------
-| Device                  | SSE-3000-MPS3
+| Device                  | SSE-300-MPS3
 | Clock                   | 32 MHz
 | Heap                    | 64 kB (configured in region_limit.h file)
 | Stack (MSP)             | 1 kB (configured in region_limit.h file)
