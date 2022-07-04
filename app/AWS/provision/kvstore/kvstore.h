@@ -54,7 +54,7 @@ typedef enum KVStoreKey
     { KV_TYPE_UINT32, sizeof( value ), .u32 = value }
 
 #define KV_DFLT_KV_TYPE_STRING( value ) \
-    { KV_TYPE_STRING, sizeof( value ), .str = value }
+    { KV_TYPE_STRING, sizeof( value ) - 1, .str = value }
 
 #define KV_DFLT_KV_TYPE_BLOB( value ) \
     { KV_TYPE_BLOB, sizeof( value ), .blob = value }

@@ -24,6 +24,8 @@
 #include "iot_crypto.h"
 #include "iot_logging_task.h"
 #include "aws_demo.h"
+#include "types/iot_network_types.h"
+#include "aws_iot_network_config.h"
 #include "aws_clientcredential.h"
 #include "kvstore.h"
 #include "cli.h"
@@ -59,18 +61,11 @@ const HeapRegion_t xHeapRegions[] = {
  * Application main thread
  *---------------------------------------------------------------------------*/
 static void app_main (void *argument) {
+  int32_t provision;
   uint32_t value;
   int32_t status;
 
   (void)argument;
-
-  if (vioGetSignal(vioBUTTON0)) {
-    printf( "Command Line Interface (CLI) to provision the device.\r\n" );
-    CRYPTO_Init();
-    xTaskCreate( Task_CLI, "cli", 2048, NULL, 1, NULL );
-    osDelay(osWaitForever);
-    for (;;) {}
-  }
 
   KVStore_getString(CS_CORE_THING_NAME, pcIOT_THING_NAME, sizeof(pcIOT_THING_NAME));
   KVStore_getString(CS_CORE_MQTT_ENDPOINT, pcMQTT_BROKER_ENDPOINT, sizeof(pcMQTT_BROKER_ENDPOINT));
@@ -78,6 +73,24 @@ static void app_main (void *argument) {
   KVStore_getString(CS_WIFI_CREDENTIAL, pcWIFI_PASSWORD, sizeof(pcWIFI_PASSWORD));
   value = KVStore_getUInt32(CS_CORE_MQTT_PORT, NULL);
   usMQTT_BROKER_PORT = (uint16_t)value;
+
+  provision = 0;
+  if ((pcIOT_THING_NAME[0] == 0) || (pcMQTT_BROKER_ENDPOINT[0] == 0)) {
+    provision = 1;
+  }
+#if ( ( configENABLED_NETWORKS & AWSIOT_NETWORK_TYPE_WIFI ) == AWSIOT_NETWORK_TYPE_WIFI )
+  if ((pcWIFI_SSID[0] == 0) || (pcWIFI_PASSWORD[0] == 0)) {
+    provision = 1;
+  }
+#endif
+
+  if (provision || vioGetSignal(vioBUTTON0)) {
+    printf( "Command Line Interface (CLI) to provision the device.\r\n" );
+    CRYPTO_Init();
+    xTaskCreate( Task_CLI, "cli", 2048, NULL, 1, NULL );
+    osDelay(osWaitForever);
+    for (;;) {}
+  }
 
   status = network_startup();
 
