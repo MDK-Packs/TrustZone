@@ -21,7 +21,7 @@ Running the VHT in uVision requires the following settings:
      `--data ../../tfm/target/mps3_corstone-300_ethos-u55/tfm_s_signed.bin@0x11000000`  
      `--data $L@L_signed.bin@0x01060000`
    - Target: `cpu0`
-   - Configuration File: `fvp_config.txt`
+   - Configuration File: `Board\AVH_MPS3_Corstone-300\fvp_config.txt`
 
 Running the VHT via command line (from project root directory and VHT executable in path):  
 `VHT_Corstone_SSE-300_Ethos-U55 -f Board/AVH_MPS3_Corstone-300/fvp_config.txt`  
