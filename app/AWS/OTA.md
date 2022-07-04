@@ -103,7 +103,7 @@ Generate a Code Signing key:
 2. Sign the image using the **sign_image.bat** script and provide the increased **version** and also increment the **security counter** (initial value is 1):  
 
    ```
-   sign_image <name>.hex <version> <security_counter>
+   sign_image <name_hex> <version> <security_counter>
    ```
 
    This will create a signed binary image`<name>_ota.bin` to be verified by the Bootloader and deployed - see next step.

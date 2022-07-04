@@ -22,7 +22,7 @@ After provisioning is done the device can connect to the Amazon AWS Cloud.
 **Python requirements**
 
   - installed **imgtool v1.9.0**, **boto3 v1.22.0**, **requests**, **pyserial** modules  
-    to install execute the following command in Git Bash shell:
+    to install execute the following command:
     ```
     pip install imgtool==1.9.0 boto3==1.22.0 requests pyserial
     ```

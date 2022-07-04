@@ -20,8 +20,9 @@ CMSIS packs: required packs are listed in the [AWS.csolution.yml](AWS.csolution.
 
 ## Provisioning Application
 
-This application is integrated into the demos. It is activated during reset while holding vioBUTTON0 button pressed.  
-It exposes a provisioning API accessible through the terminal which can be used to provision the target.  
+This application is integrated into the demos. It is activated automatically if the target has not yet been provisioned. 
+It is also activated during reset while holding vioBUTTON0 button pressed. 
+The application exposes a provisioning API accessible through the terminal which can be used to provision the target.  
 
 Provision the target:
  - program the demo with integrated provisioning application into the target
