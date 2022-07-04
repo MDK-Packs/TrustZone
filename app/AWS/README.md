@@ -68,11 +68,11 @@ Connectivity: WiFi interface with WiFi module
   > Note: due to current importer limitation it is necessary to manually add the following preprocessor define 
   `MBEDTLS_CONFIG_FILE=\"aws_mbedtls_config.h\"`
 
-3. Sign the image (`<version> = "0.9.2"`, `<security_counter> = 1`)
-  - run `sign_image.bat <name>.hex <version> <security_counter>`
+3. Sign the image (ex: `<version> = "0.9.2"`, `<security_counter> = 1`)
+  - run `sign_image.bat <name_hex> <version> <security_counter>`
   - or use MDK:
     - Options for Target - Output - enable "Create HEX File"
-    - Options for Target - User - After Build/Rebuild - enable Run #1 `sign_image.bat $L@L.hex <version> <security_counter>`
+    - Options for Target - User - After Build/Rebuild - enable Run #1 `Board\B-U585I-IOT02A\sign_image.bat $L@L <version> <security_counter>`
     - Options for Target - Utilities - disable "Update Target before Debugging"
 
 4. Run the demo
@@ -117,11 +117,11 @@ Connectivity: WiFi interface with WiFi module
   > Note: due to current importer limitation it is necessary to manually add the following preprocessor define 
   `MBEDTLS_CONFIG_FILE=\"aws_mbedtls_config.h\"`
 
-3. Sign the image (`<version> = "0.9.2"`, `<security_counter> = 1`)
-  - run `sign_image.bat <name>.hex <version> <security_counter>`
+3. Sign the image (ex: `<version> = "0.9.2"`, `<security_counter> = 1`)
+  - run `sign_image.bat <name_hex> <version> <security_counter>`
   - or use MDK:
     - Options for Target - Output - enable "Create HEX File"
-    - Options for Target - User - After Build/Rebuild - enable Run #1 `sign_image.bat $L@L.hex <version> <security_counter>`
+    - Options for Target - User - After Build/Rebuild - enable Run #1 `Board\B-U585I-IOT02A\sign_image.bat $L@L <version> <security_counter>`
     - Options for Target - Utilities - disable "Update Target before Debugging"
 
 4. Run the demo
