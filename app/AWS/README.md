@@ -28,7 +28,6 @@ Provision the target:
  - program the demo with integrated provisioning application into the target
  - reset the target while holding vioBUTTON0 button pressed
  - execute the `provision.py --interactive` script on the PC
- - reset the target to run the demo
 
 See [Provisioning the target](Provision.md) for details.
 

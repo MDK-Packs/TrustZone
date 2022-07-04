@@ -337,6 +337,7 @@ void Task_CLI( void * pvParameters )
     ( void ) pvParameters;
     FreeRTOS_CLIRegisterCommand( &xCommandDef_conf );
     FreeRTOS_CLIRegisterCommand( &xCommandDef_pki );
+    FreeRTOS_CLIRegisterCommand( &xCommandDef_reset );
 
     char * pcCommandBuffer = NULL;
 

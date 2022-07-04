@@ -123,5 +123,6 @@ char * FreeRTOS_CLIGetOutputBuffer( void );
 
 extern const CLI_Command_Definition_t xCommandDef_conf;
 extern const CLI_Command_Definition_t xCommandDef_pki;
+extern const CLI_Command_Definition_t xCommandDef_reset;
 
 #endif /* _CLI_PRIV */

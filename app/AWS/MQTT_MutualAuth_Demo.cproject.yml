@@ -127,6 +127,7 @@ project:
             - file: ./provision/cli/cli_main.c
             - file: ./provision/cli/cli_conf.c
             - file: ./provision/cli/cli_pki.c
+            - file: ./provision/cli/cli_utils.c
             - file: ./provision/cli/cli_io_drv.c
         - group: crypto
           defines:
