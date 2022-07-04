@@ -72,7 +72,8 @@ Connectivity: WiFi interface with WiFi module
   - run `sign_image.bat <name_hex> <version> <security_counter>`
   - or use MDK:
     - Options for Target - Output - enable "Create HEX File"
-    - Options for Target - User - After Build/Rebuild - enable Run #1 `Board\B-U585I-IOT02A\sign_image.bat $L@L <version> <security_counter>`
+    - Options for Target - User - After Build/Rebuild - enable Run #1:  
+      `Board\B-U585I-IOT02A\sign_image.bat $L@L <version> <security_counter>`
     - Options for Target - Utilities - disable "Update Target before Debugging"
 
 4. Run the demo
@@ -121,7 +122,8 @@ Connectivity: WiFi interface with WiFi module
   - run `sign_image.bat <name_hex> <version> <security_counter>`
   - or use MDK:
     - Options for Target - Output - enable "Create HEX File"
-    - Options for Target - User - After Build/Rebuild - enable Run #1 `Board\B-U585I-IOT02A\sign_image.bat $L@L <version> <security_counter>`
+    - Options for Target - User - After Build/Rebuild - enable Run #1:  
+      `Board\B-U585I-IOT02A\sign_image.bat $L@L <version> <security_counter>`
     - Options for Target - Utilities - disable "Update Target before Debugging"
 
 4. Run the demo
