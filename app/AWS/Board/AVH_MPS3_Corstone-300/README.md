@@ -16,18 +16,22 @@ Running the VHT in uVision requires the following settings:
  - select "Debug" tab
  - under "Use" select "Models ARMv8-M Debugger" and click "Settings" end enter the following:
    - Command: `$KARM\VHT\VHT_Corstone_SSE-300_Ethos-U55.exe`
-   - Arguments:  
-     `--data ../../bl2/target/mps3_corstone-300_ethos-u55/bl2.bin@0x10000000`  
-     `--data ../../tfm/target/mps3_corstone-300_ethos-u55/tfm_s_signed.bin@0x11000000`  
-     `--data $L@L_signed.bin@0x01060000`
+   - Arguments:
+     ```
+     --data ../../bl2/target/mps3_corstone-300_ethos-u55/bl2.bin@0x10000000 
+     --data ../../tfm/target/mps3_corstone-300_ethos-u55/tfm_s_signed.bin@0x11000000 
+     --data $L@L_signed.bin@0x01060000
+     ```
    - Target: `cpu0`
    - Configuration File: `Board\AVH_MPS3_Corstone-300\fvp_config.txt`
 
-Running the VHT via command line (from project root directory and VHT executable in path):  
-`VHT_Corstone_SSE-300_Ethos-U55 -f Board/AVH_MPS3_Corstone-300/fvp_config.txt`  
-`-a ../../bl2/target/mps3_corstone-300_ethos-u55/bl2.axf`  
-`--data ../../tfm/target/mps3_corstone-300_ethos-u55/tfm_s_signed.bin@0x11000000`  
-`--data "<image>_signed.bin"@0x01060000`
+Running the VHT via command line (from project root directory and VHT executable in path):
+  ```
+  VHT_Corstone_SSE-300_Ethos-U55 -f Board/AVH_MPS3_Corstone-300/fvp_config.txt 
+      -a ../../bl2/target/mps3_corstone-300_ethos-u55/bl2.axf 
+  --data ../../tfm/target/mps3_corstone-300_ethos-u55/tfm_s_signed.bin@0x11000000 
+  --data "<image>_signed.bin"@0x01060000
+  ```
 
 ### System Configuration
 
