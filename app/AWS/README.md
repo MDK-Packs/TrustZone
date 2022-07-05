@@ -29,6 +29,8 @@ Provision the target:
  - reset the target while holding vioBUTTON0 button pressed
  - execute the `provision.py --interactive` script on the PC
 
+> Note: target specific `provision.py` script is located in the `Board/<target_name>` directory
+
 See [Provisioning the target](Provision.md) for details.
 
 ## coreMQTT Mutual Authentication Demo

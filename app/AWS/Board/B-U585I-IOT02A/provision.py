@@ -79,7 +79,7 @@ class TargetDevice:
         self._staged_config = {}
 
     def _sync(self):
-        """Send Control+C (0x03) conntrol code to clear the current line."""
+        """Send Control+C (0x03) control code to clear the current line."""
         self.sio.write(b"\x03")
         self.sio.flush()
         self._read_response()
@@ -909,7 +909,7 @@ def main():
     # Initialize a connection to AWS IoT
     aws = AwsHelper(args=args)
     if not aws.check_credentials():
-        print("The provided AWS account credentials are inalid.")
+        print("The provided AWS account credentials are invalid.")
         raise SystemExit
 
     target.conf_set("mqtt_endpoint", aws.get_endpoint())
