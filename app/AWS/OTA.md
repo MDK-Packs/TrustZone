@@ -79,6 +79,11 @@ Generate a Code Signing key:
 
    > Note: `ota_signer_pub` is the label used to refer to the code signing key during verification of the firmware update.
 
+   Alternatively use the `import_ota_key.py` script:
+   ```
+   import_ota_key.py -k ecdsasigner-pub-key.pem
+   ```
+
 ## Setup OTA S3 bucket, Service role and policies in AWS
 
 1. S3 bucket is used to store the new firmware image to be updated. To create a new S3 bucket follow these steps here:  
