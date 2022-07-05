@@ -11,6 +11,7 @@ Tools:
  - [python v3.10 or later](https://www.python.org/downloads/windows/)
  - [AWS CLI2](https://awscli.amazonaws.com/AWSCLIV2.msi)
  - [STM32CubeProgrammer v2.10.0 or later](https://www.st.com/en/development-tools/stm32cubeprog.html)
+ - [Arm Virtual Hardware](https://developer.arm.com/tools-and-software/simulation-models/arm-virtual-hardware) for MPS3 platform with Corstone-300 v11.18.1 or later
 
 CMSIS packs: required packs are listed in the [AWS.csolution.yml](AWS.csolution.yml) file
 
