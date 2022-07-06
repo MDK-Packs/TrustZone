@@ -1,6 +1,7 @@
 # Parameters:
 # instance.parameter=value       #(type, mode) default = 'def value' : description : [min..max]
 #------------------------------------------------------------------------------
+cpu0.semihosting-enable=1                             # (bool  , init-time) default = '0'      : Enable semihosting SVC traps. Applications that do not use semihosting must set this parameter to false.
 mps3_board.hostbridge.interfaceName=                  # (string, init-time) default = ''       : Host Interface
 mps3_board.hostbridge.userNetPorts=                   # (string, init-time) default = ''       : Listening ports to expose in user-mode networking
 mps3_board.hostbridge.userNetSubnet=172.20.51.0/24    # (string, init-time) default = '172.20.51.0/24' : Virtual subnet for user-mode networking
