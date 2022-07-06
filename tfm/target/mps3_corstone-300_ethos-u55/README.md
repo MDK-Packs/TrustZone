@@ -7,7 +7,9 @@ Prebuilt TF-M and BL2 for Corstone SSE-300 with Ethos-U55 Subsystem for MPS3 (AN
 Repository: https://git.trustedfirmware.org/TF-M/trusted-firmware-m.git  
 Tag: TF-Mv1.6.0
 
-Configured AVH peripherals for non-secure access and enabled NVIC Reset from non-secure (see [patch](avh.patch))
+Configured AVH peripherals for non-secure access and enabled NVIC Reset from non-secure (see [patch](avh_peripherals.patch))
+
+Added weak entropy for Mbed Crypto using Semihosting SYS_TIME (see [patch](avh_entropy.patch))
 
 Toolchain: GNU Arm Embedded Toolchain 10.3-2021.10
 
