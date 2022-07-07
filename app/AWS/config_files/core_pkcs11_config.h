@@ -146,7 +146,7 @@
  *
  * Device certificate corresponding to pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS.
  */
-#define pkcs11configLABEL_DEVICE_CERTIFICATE_FOR_TLS       "tls_cer"
+#define pkcs11configLABEL_DEVICE_CERTIFICATE_FOR_TLS       "tls_cert"
 
 /**
  * @brief The PKCS #11 label for the object to be used for code verification.

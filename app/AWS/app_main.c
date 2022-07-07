@@ -27,6 +27,9 @@
 #include "types/iot_network_types.h"
 #include "aws_iot_network_config.h"
 #include "aws_clientcredential.h"
+#include "core_pkcs11.h"
+#include "core_pkcs11_config.h"
+#include "pkcs11.h"
 #include "kvstore.h"
 #include "cli.h"
 
@@ -57,6 +60,86 @@ const HeapRegion_t xHeapRegions[] = {
 };
 #endif
 
+int32_t FindPKCS11Keys (void) {
+  int32_t dev_key_priv = 0;
+  int32_t dev_key_pub = 0;
+  int32_t dev_cert = 0;
+#ifdef CONFIG_OTA_MQTT_UPDATE_DEMO_ENABLED
+  int32_t ota_key_pub = 0;
+#endif
+  CK_RV xResult;
+  CK_SESSION_HANDLE xSession = 0;
+  CK_FUNCTION_LIST_PTR pxFunctionList;
+  CK_OBJECT_HANDLE xHandle;
+
+  xResult = C_GetFunctionList(&pxFunctionList);
+
+  if (xResult == CKR_OK) {
+    xResult = xInitializePkcs11Session(&xSession);
+  }
+
+  if (xResult == CKR_OK) {
+    xResult = xFindObjectWithLabelAndClass(xSession,
+                                           pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS,
+                                           strlen(pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS),
+                                           CKO_PRIVATE_KEY,
+                                           &xHandle);
+    if ((xResult == CKR_OK) && (xHandle != 0)) {
+      dev_key_priv = 1;
+    }
+  }
+
+  if (xResult == CKR_OK) {
+    xResult = xFindObjectWithLabelAndClass(xSession,
+                                           pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS,
+                                           strlen(pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS),
+                                           CKO_PUBLIC_KEY,
+                                           &xHandle);
+    if ((xResult == CKR_OK) && (xHandle != 0)) {
+      dev_key_pub = 1;
+    }
+  }
+
+  if (xResult == CKR_OK) {
+    xResult = xFindObjectWithLabelAndClass(xSession,
+                                           pkcs11configLABEL_DEVICE_CERTIFICATE_FOR_TLS,
+                                           strlen(pkcs11configLABEL_DEVICE_CERTIFICATE_FOR_TLS),
+                                           CKO_CERTIFICATE,
+                                           &xHandle);
+    if ((xResult == CKR_OK) && (xHandle != 0)) {
+      dev_cert = 1;
+    }
+  }
+
+#ifdef CONFIG_OTA_MQTT_UPDATE_DEMO_ENABLED
+  if (xResult == CKR_OK) {
+    xResult = xFindObjectWithLabelAndClass(xSession,
+                                           pkcs11configLABEL_CODE_VERIFICATION_KEY,
+                                           strlen(pkcs11configLABEL_CODE_VERIFICATION_KEY),
+                                           CKO_PUBLIC_KEY,
+                                           &xHandle);
+    if ((xResult == CKR_OK) && (xHandle != 0)) {
+      ota_key_pub = 1;
+    }
+  }
+#endif
+
+  if (xSession) {
+    pxFunctionList->C_CloseSession(xSession);
+  }
+
+  if ((dev_key_priv == 0) || (dev_key_pub == 0) || (dev_cert == 0)) {
+    return 0;
+  }
+#ifdef CONFIG_OTA_MQTT_UPDATE_DEMO_ENABLED
+  if (ota_key_pub == 0) {
+    return 0;
+  }
+#endif
+
+  return 1;
+}
+
 /*---------------------------------------------------------------------------
  * Application main thread
  *---------------------------------------------------------------------------*/
@@ -67,6 +150,8 @@ static void app_main (void *argument) {
 
   (void)argument;
 
+  KVStore_init();
+
   KVStore_getString(CS_CORE_THING_NAME, pcIOT_THING_NAME, sizeof(pcIOT_THING_NAME));
   KVStore_getString(CS_CORE_MQTT_ENDPOINT, pcMQTT_BROKER_ENDPOINT, sizeof(pcMQTT_BROKER_ENDPOINT));
   KVStore_getString(CS_WIFI_SSID, pcWIFI_SSID, sizeof(pcWIFI_SSID));
@@ -75,6 +160,9 @@ static void app_main (void *argument) {
   usMQTT_BROKER_PORT = (uint16_t)value;
 
   provision = 0;
+  if (FindPKCS11Keys() == 0) {
+    provision = 1;
+  }
   if ((pcIOT_THING_NAME[0] == 0) || (pcMQTT_BROKER_ENDPOINT[0] == 0)) {
     provision = 1;
   }
@@ -118,8 +206,6 @@ void app_initialize (void) {
                           LOGGING_MESSAGE_QUEUE_LENGTH);
 
   ns_interface_lock_init();
-
-  KVStore_init();
 
   osThreadNew(app_main, NULL, &app_main_attr);
 }
