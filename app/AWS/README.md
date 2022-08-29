@@ -9,8 +9,9 @@ Tools:
  - [Keil MDK 5.37](https://www.keil.com/download/product)
  - Arm Compiler 6.18 (part of MDK)
  - [python v3.10 or later](https://www.python.org/downloads/windows/)
+   - [imgtool v1.9.0 or later](https://pypi.org/project/imgtool/)
  - [AWS CLI2](https://awscli.amazonaws.com/AWSCLIV2.msi)
- - [STM32CubeProgrammer v2.10.0 or later](https://www.st.com/en/development-tools/stm32cubeprog.html)
+ - [STM32CubeProgrammer v2.10.0 or later](https://www.st.com/en/development-tools/stm32cubeprog.html) (for STM32 hardware)
  - [Arm Virtual Hardware](https://developer.arm.com/tools-and-software/simulation-models/arm-virtual-hardware) for MPS3 platform with Corstone-300 v11.18.1 or later
 
 CMSIS packs: required packs are listed in the [AWS.csolution.yml](AWS.csolution.yml) file
