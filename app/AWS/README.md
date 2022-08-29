@@ -137,11 +137,18 @@ Connectivity: VSocket (Virtual Socket)
 
 Provisioning data which is stored in TF-M NVM can be saved after target is provisioned 
 and used subsequently without the need to provision the target every time:
-  - using uVision:
+  - using command line:
+    - add the following option to the command line: 
+      `--dump mps3_board.sse300.iotss3_internal_sram1=tfm_nvm.bin@0x1f0000,0xb000`
+    - run the demo and provision the target (only the first time)
+    - shutdown the VHT model by Ctrl-C (it will save the TF-M NVM to `tfm_nvm.bin`)
+    - add TF-M NVM as command line option for all subsequent runs: 
+      `--data tfm_nvm.bin@0x311f0000`
+  - or using uVision:
     - run the demo and provision the target (only the first time)
     - save TF-M NVM: execute command `SAVE tfm_nvm.hex 0x311f0000,0x311fafff`
     - convert TF-M NVM to Binary: execute python script `hex2bin.py tfm_nvm.hex tfm_nvm.bin`
-    - add TF-M NVM as argument for all subsequent runs:
+    - add TF-M NVM as argument for all subsequent runs: 
       `--data tfm_nvm.bin@0x311f0000`
 
 ### Target: `B-U585I-IOT02A`
