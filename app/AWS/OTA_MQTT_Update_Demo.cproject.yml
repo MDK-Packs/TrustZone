@@ -198,9 +198,9 @@ project:
       for-type: 
         - +AVH_MPS3_Corstone-300
 
-    - layer: ./Interface/AWS/Socket/Interface.clayer.yml
+    - layer: ./Interface/Secure_Sockets/IoT_Socket/Interface.clayer.yml
       for-type:
         - +AVH_MPS3_Corstone-300
-    - layer: ./Interface/AWS/WiFi/Interface.clayer.yml
+    - layer: ./Interface/Secure_Sockets/WiFi/Interface.clayer.yml
       for-type:
         - +B-U585I-IOT02A

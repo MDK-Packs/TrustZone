@@ -1,16 +1,17 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/0.9.4/tools/projmgr/schemas/clayer.schema.json
 
 layer:
-  # type: Interface AWS
-  # name: Ethernet Socket (FreeRTOS+TCP)
-  description: AWS Socket connecting via FreeRTOS+TCP over Ethernet
+  # type: Interface Secure Sockets
+  # name: Secure Sockets - FreeRTOS+ TCP (Ethernet)
+  description: Secure Sockets connecting via FreeRTOS+TCP over Ethernet
 
   # interfaces:
   #   - consumes:
   #     - C_ETH: 0
   #     - FreeRTOS:
+  #     - RTOS2:
   #   - provides:
-  #     - AWS_Socket:
+  #     - FreeRTOS_Secure_Sockets:
 
   # packs:
   #   - pack: AWS::FreeRTOS-Plus-TCP@2.3.2-Beta
@@ -28,7 +29,7 @@ layer:
     - group: config_files_Interface
       files:
         - file: ../../../config_files/FreeRTOS+TCP/aws_iot_network_config.h
-    - group: Interface_AWS
+    - group: Interface_Secure_Sockets
       files:
         - file: ./network_startup.c
         - file: ./iot_secure_sockets.c
