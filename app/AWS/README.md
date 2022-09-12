@@ -105,7 +105,11 @@ Connectivity: VSocket (Virtual Socket)
   `MBEDTLS_CONFIG_FILE=\"aws_mbedtls_config.h\"`
 
 3. Sign the image (ex: `<version> = "0.9.2"`, `<security_counter> = 1`)
-  - run `sign_image.bat <name_hex> <version> <security_counter>`
+  - run the standalone `sign_image` script:
+    - on Windows:  
+      `Board\AVH_MPS3_Corstone-300\sign_image.bat <version> <security_counter>`
+    - on Linux:  
+      `Board\AVH_MPS3_Corstone-300\sign_image.sh <version> <security_counter>`
   - or use MDK:
     - Options for Target - Output - enable "Create HEX File"
     - Options for Target - User - After Build/Rebuild - enable Run #1:  
@@ -173,7 +177,11 @@ Connectivity: WiFi interface with WiFi module
   `MBEDTLS_CONFIG_FILE=\"aws_mbedtls_config.h\"`
 
 3. Sign the image (ex: `<version> = "0.9.2"`, `<security_counter> = 1`)
-  - run `sign_image.bat <name_hex> <version> <security_counter>`
+  - run the standalone `sign_image` script:
+    - on Windows:  
+      `Board\B-U585I-IOT02A\sign_image.bat <version> <security_counter>`
+    - on Linux:  
+      `Board\B-U585I-IOT02A\sign_image.sh <version> <security_counter>`
   - or use MDK:
     - Options for Target - Output - enable "Create HEX File"
     - Options for Target - User - After Build/Rebuild - enable Run #1:  
