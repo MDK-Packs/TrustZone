@@ -886,8 +886,12 @@ def main():
 
     provision_pki(target, aws, args.cert_issuer)
 
-    print("Provisioning process complete. Resetting target device...")
-    target.reset()
+    print("Provisioning process complete.")
+
+    user_input = input("Reset target? [y/n]")
+    if (user_input == "y"):
+        print("Resetting target device...")
+        target.reset()
 
 
 if __name__ == "__main__":
