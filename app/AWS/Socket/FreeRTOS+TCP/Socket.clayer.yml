@@ -1,9 +1,9 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/0.9.4/tools/projmgr/schemas/clayer.schema.json
 
 layer:
-  # type: Interface Secure Sockets
-  # name: Secure Sockets - FreeRTOS+ TCP (Ethernet)
-  description: Secure Sockets connecting via FreeRTOS+TCP over Ethernet
+  # type: Socket
+  # name: FreeRTOS+ TCP (Ethernet) Socket
+  description: IoT Socket interface connecting via FreeRTOS+TCP over Ethernet
 
   # interfaces:
   #   - consumes:
@@ -11,13 +11,14 @@ layer:
   #     - FreeRTOS:
   #     - RTOS2:
   #   - provides:
-  #     - FreeRTOS_Secure_Sockets:
+  #     - IoT_Socket:
 
   # packs:
   #   - pack: AWS::FreeRTOS-Plus-TCP@2.3.2-Beta
+  #   - pack: MDK-Packs::IoT_Socket
 
   add-paths:
-    - ../../../config_files/FreeRTOS+TCP
+    - .
 
   components:
     - component: AWS::FreeRTOS:FreeRTOS+ TCP:Buffer Management&Buffer Allocation 2
@@ -25,13 +26,14 @@ layer:
     - component: AWS::FreeRTOS:FreeRTOS+ TCP:Core Library
     - component: AWS::FreeRTOS:FreeRTOS+ TCP:Network Interface&Custom
 
+    - component: MDK-Packs::IoT Utility:Socket:Custom
+
   groups:
-    - group: config_files_Interface
+    - group: Socket
       files:
-        - file: ../../../config_files/FreeRTOS+TCP/aws_iot_network_config.h
-    - group: Interface_Secure_Sockets
-      files:
-        - file: ./network_startup.c
-        - file: ./iot_secure_sockets.c
+        - file: ./FreeRTOSIPConfig.h
+        - file: ./socket_startup.c
+        - file: ./iot_socket.c
+        - file: ./app_interface.c
         - file: ./NetworkInterfaceConfig.h
         - file: ./NetworkInterface.c

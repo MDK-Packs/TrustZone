@@ -39,7 +39,7 @@
 #define LOGGING_MESSAGE_QUEUE_LENGTH                  (32)
 
 extern int32_t ns_interface_lock_init(void);
-extern int32_t network_startup (void);
+extern int32_t socket_startup (void);
 
 static const osThreadAttr_t app_main_attr = {
   .stack_size = 4096U
@@ -180,7 +180,7 @@ static void app_main (void *argument) {
     for (;;) {}
   }
 
-  status = network_startup();
+  status = socket_startup();
 
   if (status == 0) {
     /* Start demos. */

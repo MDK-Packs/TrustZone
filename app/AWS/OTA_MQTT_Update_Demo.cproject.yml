@@ -32,7 +32,6 @@ project:
     - ./amazon-freertos/libraries/abstractions/platform/freertos/include
     - ./amazon-freertos/libraries/abstractions/secure_sockets/include
     - ./amazon-freertos/libraries/abstractions/transport/secure_sockets
-    - ./amazon-freertos/libraries/abstractions/wifi/include
     - ./amazon-freertos/libraries/c_sdk/standard/common/include
     - ./amazon-freertos/libraries/c_sdk/standard/common/include/private
     - ./amazon-freertos/libraries/freertos_plus/standard/crypto/include
@@ -83,10 +82,10 @@ project:
     - group: config_files
       files:
         - file: ./config_files/aws_demo_config.h
+        - file: ./config_files/aws_iot_network_Config.h
         - file: ./config_files/aws_mbedtls_config.h
         - file: ./config_files/core_mqtt_config.h
         - file: ./config_files/core_pkcs11_config.h
-        - file: ./config_files/FreeRTOSIPConfig.h
         - file: ./config_files/iot_config.h
         - file: ./config_files/iot_secure_sockets_config.h
         - file: ./config_files/ota_config.h
@@ -123,6 +122,7 @@ project:
         - file: ./amazon-freertos/libraries/abstractions/pkcs11/psa/iot_pkcs11_psa_object_management.c
         - file: ./amazon-freertos/libraries/abstractions/platform/freertos/iot_threads_freertos.c
         - file: ./amazon-freertos/libraries/abstractions/platform/freertos/iot_clock_freertos.c
+        - file: ./amazon-freertos/libraries/abstractions/secure_sockets/iot_socket/iot_secure_sockets.c
         - file: ./amazon-freertos/libraries/abstractions/transport/secure_sockets/transport_secure_sockets.c
         - file: ./amazon-freertos/libraries/freertos_plus/standard/crypto/src/iot_crypto.c
         - file: ./amazon-freertos/libraries/freertos_plus/standard/tls/src/iot_tls.c
@@ -197,10 +197,6 @@ project:
     - layer: ./Socket/VSocket/Socket.clayer.yml
       for-type: 
         - +AVH_MPS3_Corstone-300
-
-    - layer: ./Interface/Secure_Sockets/IoT_Socket/Interface.clayer.yml
-      for-type:
-        - +AVH_MPS3_Corstone-300
-    - layer: ./Interface/Secure_Sockets/WiFi/Interface.clayer.yml
-      for-type:
+    - layer: ./Socket/WiFi/Socket.clayer.yml
+      for-type: 
         - +B-U585I-IOT02A
