@@ -139,6 +139,10 @@ Connectivity: VSocket (Virtual Socket)
         - Configuration File: `Board\AVH_MPS3_Corstone-300\fvp_config.txt`
     - start debug session and run
 
+  > Note: running on fast computers can lead to simulation running to quickly resulting in dropping incoming data packets from the network. This will be seen as error messages in the terminal window.  
+    Reduce the number of ticks to simulate for each quantum by specifying the following command line option `-Q <n>`, where `<n>` is the number of ticks (default value = 10000).  
+    Example: `-Q 10`
+
 Provisioning data which is stored in TF-M NVM can be saved after target is provisioned 
 and used subsequently without the need to provision the target every time:
   - using command line:

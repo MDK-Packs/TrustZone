@@ -24,7 +24,7 @@ After provisioning is done the device can connect to the Amazon AWS Cloud.
   - installed **imgtool 1.9.0 or later**, **cryptography 3.1 or later**, **boto3**, **requests**, **pyserial** modules  
     to install execute the following command:
     ```
-    pip install imgtool>=1.9.0 cryptography>=3.1 boto3 requests pyserial
+    pip install "imgtool>=1.9.0" "cryptography>=3.1" boto3 requests pyserial
     ```
 
 **AWS CLI2 requirements**
