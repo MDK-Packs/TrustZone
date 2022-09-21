@@ -31,6 +31,10 @@ layer:
   add-paths:
     - .
 
+  defines:
+    - CMSIS_VIN
+    - CMSIS_VOUT
+
   components:
     - component: ARM::Device:Definition
     - component: ARM::Device:Startup&Baremetal
