@@ -2,8 +2,8 @@
 
 layer:
   # type: Socket
-  # name: Virtual Socket
-  description: IoT Socket interface connecting to Arm Virtual Hardware over Virtual Socket
+  # name: VSocket
+  description: IoT Socket interface using Virtual Socket on Arm Virtual Hardware
 
   # interfaces:
   #   - consumes:

@@ -2,8 +2,9 @@
 
 layer:
   # type: Socket
-  # name: FreeRTOS+ TCP (Ethernet) Socket
-  description: IoT Socket interface connecting via FreeRTOS+TCP over Ethernet
+  # name: FreeRTOS+TCP
+  # variant: Ethernet
+  description: IoT Socket interface using FreeRTOS+TCP over Ethernet
 
   # interfaces:
   #   - consumes:

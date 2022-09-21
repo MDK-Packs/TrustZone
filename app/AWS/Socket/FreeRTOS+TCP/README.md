@@ -1,5 +1,5 @@
-Socket: FreeRTOS+ TCP (Ethernet) Socket
----------------------------------------
+Socket: FreeRTOS+TCP (Ethernet)
+-------------------------------
 
-This implementation uses an [IoT socket](https://mdk-packs.github.io/IoT_Socket/html/index.html) layer that connects via FreeRTOS+TCP to a 
+[IoT Socket](https://mdk-packs.github.io/IoT_Socket/html/index.html) interface using FreeRTOS+TCP over Ethernet via 
 [CMSIS-Driver Ethernet](https://arm-software.github.io/CMSIS_5/Driver/html/group__eth__interface__gr.html).

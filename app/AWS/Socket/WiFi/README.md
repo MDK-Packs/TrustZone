@@ -1,6 +1,7 @@
-Socket: WiFi IoT Socket
------------------------
-This implementation uses an [IoT socket](https://mdk-packs.github.io/IoT_Socket/html/index.html) layer that connects to a 
+Socket: WiFi
+------------
+
+[IoT Socket](https://mdk-packs.github.io/IoT_Socket/html/index.html) interface using WiFi module via 
 [CMSIS-Driver WiFi](https://arm-software.github.io/CMSIS_5/Driver/html/index.html).
 
 The file `socket_startup.c` configures the WiFi connection with these settings:

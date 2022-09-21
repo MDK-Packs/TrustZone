@@ -2,8 +2,8 @@
 
 layer:
   # type: Socket
-  # name: WiFi Socket
-  description: IoT Socket interface connecting to CMSIS-Driver WiFi
+  # name: WiFi
+  description: IoT Socket interface using WiFi
 
   # interfaces:
   #   - consumes:
