@@ -11,6 +11,21 @@ project:
   #   - pack: AWS::corePKCS11@3.0.0-Beta
   #   - pack: Arm-Packs::PKCS11
 
+  # interfaces:
+  #   - provides:
+  #     - FreeRTOS:
+  #     - RTOS2:
+  #   - consumes:
+  #     - IoT_Socket:
+  #     - PSA_Crypto:
+  #     - PSA_ITS:
+  #     - PSA_PS:
+  #     - C_VIO:
+  #     - STDOUT:
+  #     - STDIN:
+  #     - STDERR:
+  #     - Heap : 65536
+
   add-paths:
     - ./config_files
     - ./amazon-freertos/demos/include
@@ -33,7 +48,6 @@ project:
     - ./provision/cli
     - ./provision/crypto
     - ./provision/kvstore
-    - ../../tfm/interface/include
 
   defines:
     - CONFIG_CORE_MQTT_MUTUAL_AUTH_DEMO_ENABLED
@@ -65,7 +79,6 @@ project:
     - group: main
       files:
         - file: ./app_main.c
-        - file: ./tfm_ns_interface_freertos.c
     - group: config_files
       files:
         - file: ./config_files/aws_demo_config.h
@@ -151,33 +164,33 @@ project:
             - file: ./provision/libc/stpncpy.c
             - file: ./provision/libc/strnlen.c
             - file: ./provision/libc/strnstr.c
-    - group: tfm
-      files:
-        - file: ../../tfm/interface/src/tfm_crypto_ipc_api.c
-        - file: ../../tfm/interface/src/tfm_firmware_update_ipc_api.c
-        - file: ../../tfm/interface/src/tfm_initial_attestation_ipc_api.c
-        - file: ../../tfm/interface/src/tfm_its_ipc_api.c
-        - file: ../../tfm/interface/src/tfm_platform_ipc_api.c
-        - file: ../../tfm/interface/src/tfm_ps_ipc_api.c
-        - file: ../../tfm/interface/src/tfm_psa_ns_api.c
-        - file: ../../tfm/interface/target/mps3_corstone-300_ethos-u55/s_veneers.o
-          for-type: 
-            - +AVH_MPS3_Corstone-300
-        - file: ../../tfm/interface/target/b_u585i_iot02a/s_veneers.o
-          for-type: 
-            - +B-U585I-IOT02A
+
+  # requires-layers:
+  #   - Socket
+  #   - Security
+  #   - Board
 
   layers:
-    - layer: ./Board/AVH_MPS3_Corstone-300/Board.clayer.yml
-      for-type: 
-        - +AVH_MPS3_Corstone-300
-    - layer: ./Board/B-U585I-IOT02A/Board.clayer.yml
-      for-type: 
-        - +B-U585I-IOT02A
-
+    # Socket
     - layer: ./Socket/VSocket/Socket.clayer.yml
       for-type: 
         - +AVH_MPS3_Corstone-300
     - layer: ./Socket/WiFi/Socket.clayer.yml
+      for-type: 
+        - +B-U585I-IOT02A
+
+    # Security
+    - layer: ../../tfm/interface/Security-AVH_MPS3_Corstone-300.clayer.yml
+      for-type: 
+        - +AVH_MPS3_Corstone-300
+    - layer: ../../tfm/interface/Security-B-U585I-IOT02A.clayer.yml
+      for-type: 
+        - +B-U585I-IOT02A
+
+    # Board
+    - layer: ./Board/AVH_MPS3_Corstone-300/Board.clayer.yml
+      for-type: 
+        - +AVH_MPS3_Corstone-300
+    - layer: ./Board/B-U585I-IOT02A/Board.clayer.yml
       for-type: 
         - +B-U585I-IOT02A

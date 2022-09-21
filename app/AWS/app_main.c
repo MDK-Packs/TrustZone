@@ -38,7 +38,7 @@
 #define LOGGING_TASK_STACK_SIZE                       (1440)
 #define LOGGING_MESSAGE_QUEUE_LENGTH                  (32)
 
-extern int32_t ns_interface_lock_init(void);
+extern int32_t security_init (void);
 extern int32_t socket_startup (void);
 
 static const osThreadAttr_t app_main_attr = {
@@ -205,7 +205,7 @@ void app_initialize (void) {
                           LOGGING_TASK_PRIORITY,
                           LOGGING_MESSAGE_QUEUE_LENGTH);
 
-  ns_interface_lock_init();
+  security_init();
 
   osThreadNew(app_main, NULL, &app_main_attr);
 }

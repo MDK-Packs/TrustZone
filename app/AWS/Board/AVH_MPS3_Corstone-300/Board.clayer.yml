@@ -13,6 +13,7 @@ layer:
   #   - provides:
   #     - VSocket
   #     - C_ETH: 0
+  #     - C_VIO:
   #     - STDOUT:
   #     - STDIN:
   #     - STDERR:

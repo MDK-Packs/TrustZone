@@ -1,5 +1,5 @@
 /* -----------------------------------------------------------------------------
- * Copyright (c) 2021 Arm Limited (or its affiliates). All rights reserved.
+ * Copyright (c) 2022 Arm Limited (or its affiliates). All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -18,6 +18,8 @@
 
 #include <stdint.h>
 
-int32_t socket_startup (void) {
-  return 0;
+extern int32_t ns_interface_lock_init (void);
+
+int32_t security_init (void) {
+  return ns_interface_lock_init();
 }
