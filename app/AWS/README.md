@@ -139,7 +139,7 @@ Connectivity: VSocket (Virtual Socket)
         - Configuration File: `Board\AVH_MPS3_Corstone-300\fvp_config.txt`
     - start debug session and run
 
-  > Note: running on fast computers can lead to simulation running to quickly resulting in dropping incoming data packets from the network. This will be seen as error messages in the terminal window.  
+  > Note: running on fast computers can lead to simulation running too quickly resulting in dropping incoming data packets from the network. This will be seen as error messages in the terminal window.  
     Reduce the number of ticks to simulate for each quantum by specifying the following command line option `-Q <n>`, where `<n>` is the number of ticks (default value = 10000).  
     Example: `-Q 10`
 
