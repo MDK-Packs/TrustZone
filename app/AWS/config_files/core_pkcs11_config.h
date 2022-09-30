@@ -171,6 +171,4 @@
  */
 #define pkcs11configLABEL_ROOT_CERTIFICATE                 "root_ca_cert"
 
-#define pkcs11configPAL_DESTROY_SUPPORTED 1
-
 #endif /* _AWS_PKCS11_CONFIG_H_ include guard. */
