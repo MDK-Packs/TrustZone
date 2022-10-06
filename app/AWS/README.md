@@ -5,7 +5,7 @@
 ## Prerequisites
 
 Tools:
- - [CMSIS-Toolbox 0.10.2](https://github.com/Open-CMSIS-Pack/devtools/releases/tag/tools%2Ftoolbox%2F0.10.2)
+ - [CMSIS-Toolbox 1.1.0](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/tag/1.1.0) or later
  - [Keil MDK 5.37](https://www.keil.com/download/product)
  - Arm Compiler 6.18 (part of MDK)
  - [python 3.10 or later](https://www.python.org/downloads/windows/)
