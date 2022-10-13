@@ -33,7 +33,7 @@ solution:
     - type: AVH_MPS3_Corstone-300
       device: ARM::SSE-300-MPS3
     - type: B-U585I-IOT02A
-      board: B-U585I-IOT02A
+      board: STMicroelectronics::B-U585I-IOT02A
 
   build-types:
     - type: Debug
